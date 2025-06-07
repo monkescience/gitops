@@ -11,5 +11,5 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: hello-nginx
+    app.kubernetes.io/name: hello-nginx
   type: ClusterIP
