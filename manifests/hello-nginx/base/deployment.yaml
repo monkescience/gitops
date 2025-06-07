@@ -4,7 +4,7 @@ metadata:
   name: hello-nginx
   labels:
     app.kubernetes.io/name: hello-nginx
-    app.kubernetes.io/version: 0.0.1
+    app.kubernetes.io/version: 0.0.2
 spec:
   replicas: 1
   selector:
@@ -14,11 +14,11 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: hello-nginx
-        app.kubernetes.io/version: 0.0.1
+        app.kubernetes.io/version: 0.0.2
     spec:
       containers:
         - name: hello-nginx
-          image: nginxdemos/hello:latest
+          image: nginxdemos/hello:0.4
           ports:
             - containerPort: 80
           resources:
