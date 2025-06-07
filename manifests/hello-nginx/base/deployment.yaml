@@ -4,6 +4,7 @@ metadata:
   name: hello-nginx
   labels:
     app.kubernetes.io/name: hello-nginx
+    app.kubernetes.io/version: 0.0.1
 spec:
   replicas: 1
   selector:
