@@ -3,11 +3,19 @@ kind: Namespace
 metadata:
   annotations:
     keptn.sh/lifecycle-toolkit: enabled
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: reference-service-go
+    app.kubernetes.io/version: 20250609-e170a3a
   name: reference-service-go
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: reference-service-go
+    app.kubernetes.io/version: 20250609-e170a3a
   name: reference-service-go
 spec:
   ports:
@@ -16,18 +24,24 @@ spec:
     protocol: TCP
     targetPort: http
   selector:
-    app: reference-service-go
+    app.kubernetes.io/name: reference-service-go
+    app.kubernetes.io/version: 20250609-e170a3a
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: reference-service-go
+    app.kubernetes.io/version: 20250609-e170a3a
   name: reference-service-go
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: reference-service-go
+      app.kubernetes.io/name: reference-service-go
+      app.kubernetes.io/version: 20250609-e170a3a
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -36,7 +50,8 @@ spec:
   template:
     metadata:
       labels:
-        app: reference-service-go
+        app.kubernetes.io/name: reference-service-go
+        app.kubernetes.io/version: 20250609-e170a3a
     spec:
       containers:
       - env:
@@ -44,7 +59,7 @@ spec:
           value: dev
         - name: REGION
           value: eu-central-1
-        image: ghcr.io/monkescience/reference-service-go:20250609-a6cd86a
+        image: ghcr.io/monkescience/reference-service-go:20250609-e170a3a
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -89,6 +104,10 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
+  labels:
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: reference-service-go
+    app.kubernetes.io/version: 20250609-e170a3a
   name: reference-service-go
 spec:
   maxReplicas: 4
