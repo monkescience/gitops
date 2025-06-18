@@ -17,7 +17,7 @@ spec:
         region: eu-central-1
         vpcId: vpc-0e1e0fecc375943f4
         serviceAccount:
-          create: false
+          create: true
           annotations:
             eks.amazonaws.com/role-arn: arn:aws:iam::387105013966:role/monke-eu-central-1-dev-main-aws-load-balancer-controller
   destination:
