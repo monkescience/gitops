@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-extension
+  name: argocd-extension
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -12,10 +12,10 @@ spec:
   source:
     repoURL: https://github.com/monkescience/gitops.git
     targetRevision: HEAD
-    path: manifests/cert-manager-extension/eu-central-1-dev
+    path: manifests/argocd-extension/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
