@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
@@ -12,9 +14,8 @@ spec:
     chart: keptn
     targetRevision: 0.11.0
     helm:
-      parameters:
-        - name: "commitID"
-          value: "$ARGOCD_APP_REVISION"
+      values: |
+        commitID: "$ARGOCD_APP_REVISION"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: keptn-system

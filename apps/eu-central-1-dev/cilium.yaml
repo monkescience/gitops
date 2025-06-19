@@ -14,15 +14,12 @@ spec:
     chart: cilium
     targetRevision: 1.17.4
     helm:
-      parameters:
-        - name: cni.chainingMode
-          value: aws-cni
-        - name: cni.exclusive
-          value: 'false'
-        - name: enableIPv4Masquerade
-          value: 'false'
-        - name: routingMode
-          value: native
+      values: |
+        cni:
+          chainingMode: aws-cni
+          exclusive: false
+        enableIPv4Masquerade: false
+        routingMode: native
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

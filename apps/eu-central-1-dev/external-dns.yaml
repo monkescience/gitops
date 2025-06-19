@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   source:
@@ -12,17 +14,14 @@ spec:
     chart: external-dns
     targetRevision: 1.17.0
     helm:
-      parameters:
-        - name: provider
-          value: aws
-        - name: aws.region
-          value: eu-central-1
-        - name: policy
-          value: sync
-        - name: txtOwnerId
-          value: dev-eu-central-1
-        - name: domainFilters[0]
-          value: dev.eu-central-1.monke.science
+      values: |
+        provider: aws
+        aws:
+          region: eu-central-1
+        policy: sync
+        txtOwnerId: dev-eu-central-1
+        domainFilters:
+          - dev.eu-central-1.monke.science
   destination:
     server: https://kubernetes.default.svc
     namespace: external-dns
