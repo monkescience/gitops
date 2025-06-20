@@ -17,12 +17,13 @@ spec:
       values: |
         grafana.ini:
           auth:
-            basic:
-              enabled: false
             disable_login_form: true
-            anonymous:
-              enabled: true
-              org_role: Admin
+          auth.anonymous:
+            enabled: true
+            org_role: Admin
+          auth.basic:
+            enabled: false
+
 
   destination:
     server: 'https://kubernetes.default.svc'
