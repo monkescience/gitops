@@ -12,11 +12,13 @@ spec:
   source:
     repoURL: 'https://grafana.github.io/helm-charts'
     chart: grafana
-    targetRevision: 9.2.2
+    targetRevision: 9.2.7
     helm:
       values: |
         grafana.ini:
           auth:
+            basic:
+              enabled: false
             disable_login_form: true
             anonymous:
               enabled: true
