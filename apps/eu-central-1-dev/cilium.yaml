@@ -20,6 +20,11 @@ spec:
           exclusive: false
         enableIPv4Masquerade: false
         routingMode: native
+        hubble:
+          relay:
+            enabled: true
+          ui:
+            enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
