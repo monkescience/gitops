@@ -1,0 +1,19 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: IngressClassParams
+metadata:
+  name: api-gateway-ingress-class-params
+spec:
+  scheme: internal
+  group:
+    name: api-gateway
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: api-gateway-ingress-class
+spec:
+  controller: ingress.k8s.aws/alb
+  parameters:
+    apiGroup: elbv2.k8s.aws
+    kind: IngressClassParams
+    name: api-gateway-ingress-class-params
