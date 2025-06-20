@@ -4,6 +4,7 @@ metadata:
   name: api-gateway-ingress-class-params
 spec:
   scheme: internal
+  targetType: ip
   group:
     name: api-gateway
 ---
