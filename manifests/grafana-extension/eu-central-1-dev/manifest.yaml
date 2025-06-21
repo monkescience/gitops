@@ -13,3 +13,24 @@ spec:
       org_role: Admin
     auth.basic:
       enabled: "false"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDataSource
+metadata:
+  name: prometheus-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://prometheus-operated.prometheus.svc.cluster.local:9090
+      isDefault: true
+      version: 1
+      editable: false
+      jsonData:
+        timeInterval: 5s
+        queryTimeout: 30s
+        httpMethod: POST
