@@ -5,7 +5,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      app.kubernetes.io/name: grafana
   configMapRef:
     name: argo-cd-application-overview
     key: argo-cd-application-overview.json
@@ -17,7 +17,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      app.kubernetes.io/name: grafana
   configMapRef:
     name: argo-cd-notifications-overview
     key: argo-cd-notifications-overview.json
@@ -29,7 +29,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      app.kubernetes.io/name: grafana
   configMapRef:
     name: argo-cd-operational-overview
     key: argo-cd-operational-overview.json
