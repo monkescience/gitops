@@ -8,7 +8,7 @@ spec:
       dashboards: grafana
   configMapRef:
     name: argo-cd-application-overview
-    key: json
+    key: argo-cd-application-overview.json
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -20,7 +20,7 @@ spec:
       dashboards: grafana
   configMapRef:
     name: argo-cd-notifications-overview
-    key: json
+    key: argo-cd-notifications-overview.json
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -32,4 +32,4 @@ spec:
       dashboards: grafana
   configMapRef:
     name: argo-cd-operational-overview
-    key: json
+    key: argo-cd-operational-overview.json
