@@ -17,6 +17,9 @@ spec:
       values: |
         serviceMonitor:
           enabled: true
+        namespaceScope: true
+        dashboard:
+          enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
