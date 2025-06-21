@@ -22,7 +22,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  datasources:
+  datasource:
     - name: Prometheus
       type: prometheus
       access: proxy
@@ -32,5 +32,3 @@ spec:
       editable: false
       jsonData:
         timeInterval: 5s
-        queryTimeout: 30s
-        httpMethod: POST
