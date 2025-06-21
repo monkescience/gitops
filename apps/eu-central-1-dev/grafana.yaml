@@ -23,8 +23,6 @@ spec:
             org_role: Admin
           auth.basic:
             enabled: false
-
-
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: grafana
