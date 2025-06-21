@@ -19,9 +19,9 @@ spec:
           enabled: false
         prometheus:
           prometheusSpec:
-            serviceMonitorSelector: {}
-            podMonitorSelector: {}
-            ruleSelector: {}
+            serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
+            ruleSelectorNilUsesHelmValues: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prometheus
