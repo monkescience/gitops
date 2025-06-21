@@ -1,18 +1,23 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-server-ingress
-  namespace: argocd
-spec:
-  ingressClassName: api-gateway-ingress-class
-  rules:
-    - host: argocd.dev.eu-central-1.monke.science
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  name: http
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: argocd-server-ingress
+#  namespace: argocd
+#  annotations:
+#    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-central-1:123456789012:certificate/your-certificate-id
+#    alb.ingress.kubernetes.io/auth-type: cognito
+#    alb.ingress.kubernetes.io/auth-scop: "openid"
+#    alb.ingress.kubernetes.io/auth-on-unauthenticated-request: authenticate
+#spec:
+#  ingressClassName: api-gateway-ingress-class
+#  rules:
+#    - host: argocd.dev.eu-central-1.monke.science
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: argocd-server
+#                port:
+#                  name: http
