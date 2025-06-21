@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
@@ -21,6 +21,13 @@ spec:
           spec:
             auth:
               strategy: anonymous
+          external_services:
+            prometheus:
+              url: https://prometheus.monitoring.svc:9090
+            grafana:
+              url: https://grafana.monitoring.svc:3000
+            tracing:
+              url: https://tracing.jaeger.svc:16685/jaeger
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
