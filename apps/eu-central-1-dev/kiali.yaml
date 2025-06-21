@@ -25,9 +25,9 @@ spec:
               prometheus:
                 url: https://prometheus.monitoring.svc:9090
               grafana:
-                url: https://grafana.monitoring.svc:3000
+                internal_url: https://grafana.monitoring.svc:3000
               tracing:
-                url: https://tracing.jaeger.svc:16685/jaeger
+                internal_url: https://tracing.jaeger.svc:16685/jaeger
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
