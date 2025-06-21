@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: grafana
+    targetRevision: 9.2.7
+    helm:
+      values: |
+        grafana.ini:
+          auth:
+            disable_login_form: false
+          auth.anonymous:
+            enabled: true
+            org_role: Admin
+          auth.basic:
+            enabled: false
+        sidecar:
+          dashboards:
+            enabled: true
+            searchNamespace: ALL
+          alerts:
+            enabled: true
+            searchNamespace: ALL
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: grafana
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
