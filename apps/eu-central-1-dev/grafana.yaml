@@ -26,7 +26,7 @@ spec:
         sidecar:
           dashboards:
             enabled: true
-            searchNamespace: ALL
+            searchNamespace: grafana
           alerts:
             enabled: true
             searchNamespace: ALL
