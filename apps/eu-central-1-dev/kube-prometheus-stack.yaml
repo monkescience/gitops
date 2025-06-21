@@ -17,6 +17,11 @@ spec:
       values: |
         grafana:
           enabled: false
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelector: {}
+            podMonitorSelector: {}
+            ruleSelector: {}
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prometheus
