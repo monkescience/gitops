@@ -5,17 +5,6 @@ metadata:
   labels:
     app.kubernetes.io/name: grafana
 spec:
-  external:
-    adminUser:
-      valueFrom:
-        secretKeyRef:
-          name: grafana-admin-credentials
-          key: GF_SECURITY_ADMIN_USER
-    adminPassword:
-      valueFrom:
-        secretKeyRef:
-          name: grafana-admin-credentials
-          key: GF_SECURITY_ADMIN_PASSWORD
   config:
     auth:
       disable_login_form: 'false'
