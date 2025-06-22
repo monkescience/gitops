@@ -17,6 +17,7 @@ spec:
       values: |
         grafana:
           enabled: false
+        
         prometheus:
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
@@ -29,6 +30,7 @@ spec:
               limits:
                 cpu: 500m
                 memory: 1.5Gi
+        
         alertmanager:
           alertmanagerSpec:
             resources:
@@ -38,6 +40,7 @@ spec:
               limits:
                 cpu: 200m
                 memory: 128Mi
+        
         prometheusOperator:
           resources:
             requests:
@@ -46,6 +49,24 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+        
+        prometheus-node-exporter:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+        
+        kube-state-metrics:
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prometheus
