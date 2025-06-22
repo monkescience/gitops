@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-e5d3263
+    app.kubernetes.io/version: 20250622-0fe363b
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -15,7 +15,6 @@ spec:
     targetPort: http
   selector:
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-e5d3263
   type: ClusterIP
 ---
 apiVersion: apps/v1
@@ -24,7 +23,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-e5d3263
+    app.kubernetes.io/version: 20250622-0fe363b
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -32,7 +31,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: reference-service-go
-      app.kubernetes.io/version: 20250622-e5d3263
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -42,7 +40,6 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: reference-service-go
-        app.kubernetes.io/version: 20250622-e5d3263
     spec:
       containers:
       - env:
@@ -50,7 +47,7 @@ spec:
           value: dev
         - name: REGION
           value: eu-central-1
-        image: ghcr.io/monkescience/reference-service-go:20250622-e5d3263
+        image: ghcr.io/monkescience/reference-service-go:20250622-0fe363b
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -99,7 +96,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-e5d3263
+    app.kubernetes.io/version: 20250622-0fe363b
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -107,7 +104,6 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: reference-service-go
-      app.kubernetes.io/version: 20250622-e5d3263
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -115,7 +111,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-e5d3263
+    app.kubernetes.io/version: 20250622-0fe363b
   name: reference-service-go
   namespace: reference-service-go
 spec:
