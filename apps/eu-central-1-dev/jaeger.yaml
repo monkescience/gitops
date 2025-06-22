@@ -13,10 +13,47 @@ spec:
     repoURL: https://jaegertracing.github.io/helm-charts
     chart: jaeger
     targetRevision: 3.4.1
+    helm:
+      values: |
+        provisionDataStore:
+            cassandra:
+                enabled: false
+            elasticsearch:
+                enabled: true
+        storage:
+          type: elasticsearch
+        
+        agent:
+          enabled: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
+        collector:
+          enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+        query:
+          enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: jaeger
   syncPolicy:
-#    automated:
-#      prune: true
-#      selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
