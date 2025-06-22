@@ -22,6 +22,23 @@ spec:
 
         redis-ha:
           enabled: true
+          redis:
+            resources:
+              requests:
+                cpu: 200m
+                memory: 128Mi
+              limits:
+                cpu: 400m
+                memory: 128Mi
+        
+          haproxy:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 256Mi
+              limits:
+                cpu: 100m
+                memory: 256Mi
 
         controller:
           replicas: 2
