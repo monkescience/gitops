@@ -10,7 +10,7 @@ spec:
       disable_login_form: 'false'
     auth.anonymous:
       enabled: 'true'
-      org_role: Admin
+      org_role: Editor
     auth.basic:
       enabled: 'false'
 ---
@@ -31,3 +31,22 @@ spec:
     editable: false
     jsonData:
       timeInterval: 5s
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: jaeger-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      app.kubernetes.io/name: grafana
+  datasource:
+    name: jaeger
+    type: jaeger
+    access: proxy
+    url: http://jaeger-query.jaeger.svc.cluster.local:16686
+    isDefault: false
+    jsonData:
+      spanBar:
+        type: None
+    editable: false
