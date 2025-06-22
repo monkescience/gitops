@@ -19,10 +19,10 @@ spec:
           enabled: true
         namespaceScope: true
         resources:
-          limits:
+          requests:
             cpu: 50m
             memory: 32Mi
-          requests:
+          limits:
             cpu: 100m
             memory: 32Mi
   destination:
