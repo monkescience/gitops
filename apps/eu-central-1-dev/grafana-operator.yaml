@@ -18,6 +18,13 @@ spec:
         serviceMonitor:
           enabled: true
         namespaceScope: true
+        resources:
+          limits:
+            cpu: 50m
+            memory: 32Mi
+          requests:
+            cpu: 100m
+            memory: 32Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
