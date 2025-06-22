@@ -49,6 +49,14 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+          prometheusConfigReloader:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 32Mi
+              limits:
+                cpu: 100m
+                memory: 32Mi
         
         prometheus-node-exporter:
           resources:
