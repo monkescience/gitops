@@ -1,0 +1,118 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-cd
+    targetRevision: 8.1.1
+    helm:
+      values: |
+        configs:
+          params:
+            server:
+              insecure: true
+
+        redis-ha:
+          enabled: true
+
+        controller:
+          replicas: 1
+          metrics:
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+
+        repoServer:
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+        server:
+          autoscaling:
+            enabled: true
+            minReplicas: 2
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 400m
+              memory: 256Mi
+
+        dex:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+
+        applicationSet:
+          replicas: 2
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+
+        notifications:
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
