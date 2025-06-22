@@ -22,6 +22,30 @@ spec:
             serviceMonitorSelectorNilUsesHelmValues: false
             podMonitorSelectorNilUsesHelmValues: false
             ruleSelectorNilUsesHelmValues: false
+            resources:
+              requests:
+                cpu: 500m
+                memory: 1.5Gi
+              limits:
+                cpu: 500m
+                memory: 1.5Gi
+        alertmanager:
+          alertmanagerSpec:
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+              limits:
+                cpu: 200m
+                memory: 128Mi
+        prometheusOperator:
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prometheus
