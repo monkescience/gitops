@@ -12,3 +12,15 @@ spec:
     solvers:
     - dns01:
         route53: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kgateway-wildcard-domain-tls
+spec:
+  secretName: kgateway-wildcard-domain-tls
+  issuerRef:
+    name: letsencrypt-cluster-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.dev.eu-central-1.monke.science"
