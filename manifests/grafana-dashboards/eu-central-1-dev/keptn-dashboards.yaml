@@ -16,7 +16,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: keptn
+  folder: Keptn
   configMapRef:
     name: keptn-applications
     key: keptn-applications.json
@@ -29,7 +29,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: keptn
+  folder: Keptn
   configMapRef:
     name: keptn-overview
     key: keptn-overview.json
@@ -42,7 +42,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: keptn
+  folder: Keptn
   configMapRef:
     name: keptn-workloads
     key: keptn-workloads.json

@@ -1,14 +1,4 @@
 apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaFolder
-metadata:
-  name: argo-cd
-spec:
-  instanceSelector:
-    matchLabels:
-      app.kubernetes.io/name: grafana
-  title: Argo CD
----
-apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: argo-cd-application-overview
@@ -16,7 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: argo-cd
+  folder: Argo CD
   configMapRef:
     name: argo-cd-application-overview
     key: argo-cd-application-overview.json
@@ -29,7 +19,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: argo-cd
+  folder: Argo CD
   configMapRef:
     name: argo-cd-notifications-overview
     key: argo-cd-notifications-overview.json
@@ -42,7 +32,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
-  folder: argo-cd
+  folder: Argo CD
   configMapRef:
     name: argo-cd-operational-overview
     key: argo-cd-operational-overview.json
