@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-dashboards
+  name: kubernetes-extension
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
     repoURL: https://github.com/monkescience/gitops.git
     targetRevision: HEAD
-    path: manifests/grafana-dashboards/eu-central-1-dev
+    path: manifests/kubernetes-extension/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: grafana
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true

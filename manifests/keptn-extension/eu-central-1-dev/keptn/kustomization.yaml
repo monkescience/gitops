@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - keptn-dashboards.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: keptn-applications
+    files:
+      - keptn-applications.json
+  - name: keptn-overview
+    files:
+      - keptn-overview.json
+  - name: keptn-workloads
+    files:
+      - keptn-workloads.json
