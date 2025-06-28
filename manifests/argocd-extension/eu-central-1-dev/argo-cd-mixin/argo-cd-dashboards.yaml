@@ -6,6 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Argo CD
   configMapRef:
     name: argo-cd-application-overview
@@ -19,6 +20,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Argo CD
   configMapRef:
     name: argo-cd-notifications-overview
@@ -32,6 +34,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Argo CD
   configMapRef:
     name: argo-cd-operational-overview
