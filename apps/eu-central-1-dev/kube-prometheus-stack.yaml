@@ -17,6 +17,7 @@ spec:
       values: |
         defaultRules:
           create: true
+          rules:
             kubeControllerManager: false
             kubeProxy: false
         
