@@ -25,11 +25,26 @@ spec:
           redis:
             resources:
               requests:
-                cpu: 200m
-                memory: 128Mi
+                cpu: 100m
+                memory: 64Mi
               limits:
-                cpu: 400m
-                memory: 128Mi
+                memory: 64Mi
+
+          sentinel:
+            resources:
+              requests:
+                cpu: 100m
+                memory: 16Mi
+              limits:
+                memory: 16Mi
+        
+          splitBrainDetection:
+            resources:
+              requests:
+                cpu: 50m
+                memory: 16Mi
+              limits:
+                memory: 16Mi
         
           haproxy:
             resources:
@@ -37,26 +52,7 @@ spec:
                 cpu: 50m
                 memory: 128Mi
               limits:
-                cpu: 100m
                 memory: 128Mi
-        
-          sentinel:
-            resources:
-              requests:
-                cpu: 100m
-                memory: 32Mi
-              limits:
-                cpu: 200m
-                memory: 32Mi
-        
-          splitBrainDetection:
-            resources:
-              requests:
-                cpu: 50m
-                memory: 32Mi
-              limits:
-                cpu: 100m
-                memory: 32Mi
 
         controller:
           replicas: 2
@@ -66,7 +62,7 @@ spec:
               enabled: true
           resources:
             requests:
-              cpu: 500m
+              cpu: 400m
               memory: 1024Mi
             limits:
               memory: 1024Mi
@@ -81,10 +77,9 @@ spec:
               enabled: true
           resources:
             requests:
-              cpu: 100m
+              cpu: 50m
               memory: 256Mi
             limits:
-              cpu: 200m
               memory: 256Mi
 
         server:
@@ -97,25 +92,13 @@ spec:
               enabled: true
           resources:
             requests:
-              cpu: 200m
-              memory: 256Mi
+              cpu: 50m
+              memory: 128Mi
             limits:
-              cpu: 400m
-              memory: 256Mi
+              memory: 128Mi
 
         dex:
           enabled: false
-          metrics:
-            enabled: true
-            serviceMonitor:
-              enabled: true
-          resources:
-            requests:
-              cpu: 100m
-              memory: 128Mi
-            limits:
-              cpu: 200m
-              memory: 128Mi
 
         applicationSet:
           replicas: 2
@@ -125,11 +108,10 @@ spec:
               enabled: true
           resources:
             requests:
-              cpu: 100m
-              memory: 128Mi
+              cpu: 50m
+              memory: 64Mi
             limits:
-              cpu: 200m
-              memory: 128Mi
+              memory: 64Mi
 
         notifications:
           metrics:
@@ -138,11 +120,10 @@ spec:
               enabled: true
           resources:
             requests:
-              cpu: 100m
-              memory: 128Mi
+              cpu: 50m
+              memory: 64Mi
             limits:
-              cpu: 200m
-              memory: 128Mi
+              memory: 64Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
