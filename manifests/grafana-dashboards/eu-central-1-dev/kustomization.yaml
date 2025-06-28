@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - argo-cd-dashboards.yaml
   - keptn-dashboards.yaml
+  - kubernetes-dashboards.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -28,3 +29,70 @@ configMapGenerator:
   - name: keptn-workloads
     files:
       - keptn/keptn-workloads.json
+
+  - name: apiserver
+    files:
+      - kubernetes-mixin/apiserver.json
+  - name: cluster-total
+    files:
+      - kubernetes-mixin/cluster-total.json
+  - name: controller-manager
+    files:
+      - kubernetes-mixin/controller-manager.json
+  - name: k8s-resources-cluster
+    files:
+      - kubernetes-mixin/k8s-resources-cluster.json
+  - name: k8s-resources-namespace
+    files:
+      - kubernetes-mixin/k8s-resources-namespace.json
+  - name: k8s-resources-node
+    files:
+      - kubernetes-mixin/k8s-resources-node.json
+  - name: k8s-resources-pod
+    files:
+      - kubernetes-mixin/k8s-resources-pod.json
+  - name: k8s-resources-windows-cluster
+    files:
+      - kubernetes-mixin/k8s-resources-windows-cluster.json
+  - name: k8s-resources-windows-namespace
+    files:
+      - kubernetes-mixin/k8s-resources-windows-namespace.json
+  - name: k8s-resources-windows-pod
+    files:
+      - kubernetes-mixin/k8s-resources-windows-pod.json
+  - name: k8s-resources-workload
+    files:
+      - kubernetes-mixin/k8s-resources-workload.json
+  - name: k8s-resources-workloads-namespace
+    files:
+      - kubernetes-mixin/k8s-resources-workloads-namespace.json
+  - name: k8s-windows-cluster-rsrc-use
+    files:
+      - kubernetes-mixin/k8s-windows-cluster-rsrc-use.json
+  - name: k8s-windows-node-rsrc-use
+    files:
+      - kubernetes-mixin/k8s-windows-node-rsrc-use.json
+  - name: kubelet
+    files:
+      - kubernetes-mixin/kubelet.json
+  - name: namespace-by-pod
+    files:
+      - kubernetes-mixin/namespace-by-pod.json
+  - name: namespace-by-workload
+    files:
+      - kubernetes-mixin/namespace-by-workload.json
+  - name: persistentvolumesusage
+    files:
+      - kubernetes-mixin/persistentvolumesusage.json
+  - name: pod-total
+    files:
+      - kubernetes-mixin/pod-total.json
+  - name: proxy
+    files:
+      - kubernetes-mixin/proxy.json
+  - name: scheduler
+    files:
+      - kubernetes-mixin/scheduler.json
+  - name: workload-total
+    files:
+      - kubernetes-mixin/workload-total.json
