@@ -6,6 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: apiserver
@@ -19,6 +20,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: cluster-total
@@ -32,6 +34,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: controller-manager
@@ -45,6 +48,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-cluster
@@ -58,6 +62,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-namespace
@@ -71,6 +76,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-node
@@ -84,6 +90,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-pod
@@ -97,6 +104,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-workload
@@ -110,6 +118,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: k8s-resources-workloads-namespace
@@ -123,6 +132,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: kubelet
@@ -136,6 +146,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: namespace-by-pod
@@ -149,6 +160,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: namespace-by-workload
@@ -162,6 +174,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: persistentvolumesusage
@@ -175,6 +188,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: pod-total
@@ -188,6 +202,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: proxy
@@ -201,6 +216,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: scheduler
@@ -214,6 +230,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Kubernetes
   configMapRef:
     name: workload-total

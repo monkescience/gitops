@@ -6,6 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Keptn
   configMapRef:
     name: keptn-applications
@@ -19,6 +20,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Keptn
   configMapRef:
     name: keptn-overview
@@ -32,6 +34,7 @@ spec:
   instanceSelector:
     matchLabels:
       app.kubernetes.io/name: grafana
+  allowCrossNamespaceImport: true
   folder: Keptn
   configMapRef:
     name: keptn-workloads
