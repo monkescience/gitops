@@ -35,6 +35,14 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 1Gi
+            storageSpec:
+              volumeClaimTemplate:
+                spec:
+                  accessModes: ['ReadWriteOnce']
+                  resources:
+                    requests:
+                      storage: 5Gi
+                  reclaimPolicy: Delete # Should be set to Retain in production
         
         alertmanager:
           alertmanagerSpec:
