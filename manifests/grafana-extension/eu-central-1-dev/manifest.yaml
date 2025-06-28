@@ -6,13 +6,17 @@ metadata:
     app.kubernetes.io/name: grafana
 spec:
   deployment:
-    replicas: 2
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      memory: 256Mi
+    spec:
+      replicas: 2
+      template:
+        spec:
+          containers:
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+              limits:
+                memory: 256Mi
   config:
     auth:
       disable_login_form: 'false'
