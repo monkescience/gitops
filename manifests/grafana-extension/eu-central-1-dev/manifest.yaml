@@ -11,12 +11,13 @@ spec:
       template:
         spec:
           containers:
-            resources:
-              requests:
-                cpu: 100m
-                memory: 256Mi
-              limits:
-                memory: 256Mi
+            - name: grafana
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+                limits:
+                  memory: 256Mi
   config:
     auth:
       disable_login_form: 'false'
