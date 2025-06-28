@@ -38,11 +38,11 @@ spec:
             storageSpec:
               volumeClaimTemplate:
                 spec:
+                  storageClassName: gp3
                   accessModes: ['ReadWriteOnce']
                   resources:
                     requests:
                       storage: 5Gi
-                  reclaimPolicy: Delete # Should be set to Retain in production
         
         alertmanager:
           alertmanagerSpec:

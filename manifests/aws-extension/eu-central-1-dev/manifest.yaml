@@ -6,6 +6,8 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: ebs.csi.eks.amazonaws.com
 volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete # Use Retain to prevent automatic deletion of volumes
+allowVolumeExpansion: true
 parameters:
   type: gp3
   encrypted: "true"
