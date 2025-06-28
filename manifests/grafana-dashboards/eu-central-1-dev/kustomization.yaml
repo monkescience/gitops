@@ -51,27 +51,12 @@ configMapGenerator:
   - name: k8s-resources-pod
     files:
       - kubernetes-mixin/k8s-resources-pod.json
-  - name: k8s-resources-windows-cluster
-    files:
-      - kubernetes-mixin/k8s-resources-windows-cluster.json
-  - name: k8s-resources-windows-namespace
-    files:
-      - kubernetes-mixin/k8s-resources-windows-namespace.json
-  - name: k8s-resources-windows-pod
-    files:
-      - kubernetes-mixin/k8s-resources-windows-pod.json
   - name: k8s-resources-workload
     files:
       - kubernetes-mixin/k8s-resources-workload.json
   - name: k8s-resources-workloads-namespace
     files:
       - kubernetes-mixin/k8s-resources-workloads-namespace.json
-  - name: k8s-windows-cluster-rsrc-use
-    files:
-      - kubernetes-mixin/k8s-windows-cluster-rsrc-use.json
-  - name: k8s-windows-node-rsrc-use
-    files:
-      - kubernetes-mixin/k8s-windows-node-rsrc-use.json
   - name: kubelet
     files:
       - kubernetes-mixin/kubelet.json
