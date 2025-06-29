@@ -24,6 +24,14 @@ spec:
             chunks_directory: /var/loki/chunks
             rules_directory: /var/loki/rules
             admin_api_directory: /var/loki/admin
+        singleBinary:
+          enabled: true
+        read:
+          enabled: false
+        write:
+          enabled: false
+        backend:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
