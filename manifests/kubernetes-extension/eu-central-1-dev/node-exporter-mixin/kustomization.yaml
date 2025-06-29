@@ -16,12 +16,6 @@ configMapGenerator:
   - name: node-rsrc-use
     files:
       - node-rsrc-use.json
-  - name: nodes-aix
-    files:
-      - nodes-aix.json
-  - name: nodes-darwin
-    files:
-      - nodes-darwin.json
   - name: nodes
     files:
       - nodes.json
