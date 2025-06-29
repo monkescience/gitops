@@ -28,12 +28,6 @@ spec:
         singleBinary:
           enabled: true
           replicas: 1
-        read:
-          enabled: false
-        write:
-          enabled: false
-        backend:
-          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
