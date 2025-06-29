@@ -44,6 +44,13 @@ spec:
     helm:
       values: |
         profile: ambient
+        
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            memory: 128Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
@@ -75,6 +82,13 @@ spec:
     helm:
       values: |
         profile: ambient
+        
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+          limits:
+            memory: 64Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
@@ -98,6 +112,14 @@ spec:
     repoURL: https://istio-release.storage.googleapis.com/charts
     chart: ztunnel
     targetRevision: 1.26.2
+    helm:
+      values: |
+        resources:
+          requests:
+            cpu: 50m
+            memory: 32Mi
+          limits:
+            memory: 32Mi
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
