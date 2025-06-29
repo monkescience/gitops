@@ -16,18 +16,6 @@ spec:
     helm:
       values: |
         deploymentMode: SingleBinary
-        loki:
-          commonConfig:
-            replication_factor: 1
-          storage:
-            type: filesystem
-            filesystem:
-              chunks_directory: /var/loki/chunks
-              rules_directory: /var/loki/rules
-              admin_api_directory: /var/loki/admin
-        singleBinary:
-          enabled: true
-          replicas: 1
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
