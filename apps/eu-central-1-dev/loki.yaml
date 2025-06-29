@@ -26,6 +26,7 @@ spec:
               admin_api_directory: /var/loki/admin
         singleBinary:
           enabled: true
+          replicas: 1
         read:
           enabled: false
         write:
