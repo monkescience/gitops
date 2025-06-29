@@ -13,8 +13,15 @@ spec:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
     targetRevision: 6.30.1
-#    helm:
-#      values: |
+    helm:
+      values: |
+        loki:
+          storage:
+            type: filesystem
+          filesystem:
+            chunks_directory: /var/loki/chunks
+            rules_directory: /var/loki/rules
+            admin_api_directory: /var/loki/admin
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
