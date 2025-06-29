@@ -16,6 +16,8 @@ spec:
     helm:
       values: |
         loki:
+          commonConfig:
+            replication_factor: 1
           storage:
             type: filesystem
           filesystem:
