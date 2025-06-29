@@ -23,9 +23,9 @@ spec:
               strategy: anonymous
             external_services:
               prometheus:
-                url: http://prometheus-operated.prometheus.svc:80
+                url: http://prometheus-operated.prometheus.svc:9090
               grafana:
-                internal_url: http://grafana.grafana.svc:80
+                internal_url: http://grafana-service.grafana.svc:3000
               tracing:
                 internal_url: https://jaeger-query.jaeger.svc:16685/jaeger
   destination:
