@@ -14,11 +14,11 @@ spec:
         summary: Filesystem is predicted to run out of space within the next 24 hours.
       expr: |
         (
-          node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node",fstype!="",mountpoint!=""} * 100 < 40
+          node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 40
         and
-          predict_linear(node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
+          predict_linear(node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -31,11 +31,11 @@ spec:
         summary: Filesystem is predicted to run out of space within the next 4 hours.
       expr: |
         (
-          node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node",fstype!="",mountpoint!=""} * 100 < 20
+          node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 20
         and
-          predict_linear(node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
+          predict_linear(node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -48,9 +48,9 @@ spec:
         summary: Filesystem has less than 5% space left.
       expr: |
         (
-          node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node",fstype!="",mountpoint!=""} * 100 < 5
+          node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 5
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 30m
       labels:
@@ -63,9 +63,9 @@ spec:
         summary: Filesystem has less than 3% space left.
       expr: |
         (
-          node_filesystem_avail_bytes{job="node",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node",fstype!="",mountpoint!=""} * 100 < 3
+          node_filesystem_avail_bytes{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_size_bytes{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 3
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 30m
       labels:
@@ -78,11 +78,11 @@ spec:
         summary: Filesystem is predicted to run out of inodes within the next 24 hours.
       expr: |
         (
-          node_filesystem_files_free{job="node",fstype!="",mountpoint!=""} / node_filesystem_files{job="node",fstype!="",mountpoint!=""} * 100 < 40
+          node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 40
         and
-          predict_linear(node_filesystem_files_free{job="node",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
+          predict_linear(node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""}[6h], 24*60*60) < 0
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -95,11 +95,11 @@ spec:
         summary: Filesystem is predicted to run out of inodes within the next 4 hours.
       expr: |
         (
-          node_filesystem_files_free{job="node",fstype!="",mountpoint!=""} / node_filesystem_files{job="node",fstype!="",mountpoint!=""} * 100 < 20
+          node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 20
         and
-          predict_linear(node_filesystem_files_free{job="node",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
+          predict_linear(node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""}[6h], 4*60*60) < 0
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -112,9 +112,9 @@ spec:
         summary: Filesystem has less than 5% inodes left.
       expr: |
         (
-          node_filesystem_files_free{job="node",fstype!="",mountpoint!=""} / node_filesystem_files{job="node",fstype!="",mountpoint!=""} * 100 < 5
+          node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 5
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -127,9 +127,9 @@ spec:
         summary: Filesystem has less than 3% inodes left.
       expr: |
         (
-          node_filesystem_files_free{job="node",fstype!="",mountpoint!=""} / node_filesystem_files{job="node",fstype!="",mountpoint!=""} * 100 < 3
+          node_filesystem_files_free{job="node-exporter",fstype!="",mountpoint!=""} / node_filesystem_files{job="node-exporter",fstype!="",mountpoint!=""} * 100 < 3
         and
-          node_filesystem_readonly{job="node",fstype!="",mountpoint!=""} == 0
+          node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
       for: 1h
       labels:
@@ -139,7 +139,7 @@ spec:
         description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered
           {{ printf "%.0f" $value }} receive errors in the last 2 minutes.'
         summary: Network interface receive errors
-      expr: rate(node_network_receive_errs_total{job="node",device!~"^lo$"}[2m]) >
+      expr: rate(node_network_receive_errs_total{job="node-exporter",device!~"^lo$"}[2m]) >
         0
       for: 1h
       labels:
@@ -149,7 +149,7 @@ spec:
         description: '{{ $labels.instance }} interface {{ $labels.device }} has encountered
           {{ printf "%.0f" $value }} transmit errors in the last 2 minutes.'
         summary: Network interface transmit errors
-      expr: rate(node_network_transmit_errs_total{job="node",device!~"^lo$"}[2m]) >
+      expr: rate(node_network_transmit_errs_total{job="node-exporter",device!~"^lo$"}[2m]) >
         0
       for: 1h
       labels:
@@ -167,7 +167,7 @@ spec:
         description: Node Exporter text file collector on {{ $labels.instance }} could
           not be scraped.
         summary: Node Exporter text file collector scrape error
-      expr: node_textfile_scrape_error{job="node"} == 1
+      expr: node_textfile_scrape_error{job="node-exporter"} == 1
       for: 15m
       labels:
         severity: warning
@@ -175,7 +175,7 @@ spec:
       annotations:
         description: Clock on {{ $labels.instance }} is out of sync by more than 300s.
         summary: Clock skew detected
-      expr: 'abs(node_timex_offset_seconds{job="node"}) > 300'
+      expr: 'abs(node_timex_offset_seconds{job="node-exporter"}) > 300'
       for: 10m
       labels:
         severity: warning
@@ -183,7 +183,7 @@ spec:
       annotations:
         description: Clock on {{ $labels.instance }} is not synchronising.
         summary: Clock not synchronising
-      expr: 'min_over_time(node_timex_sync_status{job="node"}[5m]) == 0 and node_timex_maxerror_seconds{job="node"}
+      expr: 'min_over_time(node_timex_sync_status{job="node-exporter"}[5m]) == 0 and node_timex_maxerror_seconds{job="node-exporter"}
         >= 16'
       for: 10m
       labels:
