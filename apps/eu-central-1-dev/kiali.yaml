@@ -23,7 +23,7 @@ spec:
               strategy: anonymous
             external_services:
               prometheus:
-                url: http://prometheus-server.prometheus.svc:80
+                url: http://prometheus-operated.prometheus.svc:80
               grafana:
                 internal_url: http://grafana.grafana.svc:80
               tracing:
