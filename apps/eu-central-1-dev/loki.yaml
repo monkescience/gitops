@@ -20,10 +20,10 @@ spec:
             replication_factor: 1
           storage:
             type: filesystem
-          filesystem:
-            chunks_directory: /var/loki/chunks
-            rules_directory: /var/loki/rules
-            admin_api_directory: /var/loki/admin
+            filesystem:
+              chunks_directory: /var/loki/chunks
+              rules_directory: /var/loki/rules
+              admin_api_directory: /var/loki/admin
         singleBinary:
           enabled: true
         read:
