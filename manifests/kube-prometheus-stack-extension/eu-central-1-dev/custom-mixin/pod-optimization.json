@@ -4,8 +4,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -96,8 +96,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "(100 * sum(rate(container_cpu_usage_seconds_total{container!=\"POD\",namespace=~\"$namespace\"}[5m])) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"cpu\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod)) and on(namespace,pod) (avg_over_time((100 * sum(rate(container_cpu_usage_seconds_total{container!=\"POD\",namespace=~\"$namespace\"}[5m])) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"cpu\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod))[12h:]) < 30)",
@@ -111,8 +111,8 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -203,8 +203,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "(100 * sum(rate(container_cpu_usage_seconds_total{container!=\"POD\",namespace=~\"$namespace\"}[5m])) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"cpu\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod)) and on(namespace,pod) (avg_over_time((100 * sum(rate(container_cpu_usage_seconds_total{container!=\"POD\",namespace=~\"$namespace\"}[5m])) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"cpu\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod))[12h:]) > 80)",
@@ -218,8 +218,8 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -311,8 +311,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "(100 * sum(container_memory_usage_bytes{container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"memory\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod)) and on(namespace,pod) (avg_over_time((100 * sum(container_memory_usage_bytes{container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"memory\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod))[12h:]) < 30)",
@@ -326,8 +326,8 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -418,8 +418,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "(100 * sum(container_memory_usage_bytes{container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"memory\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod)) and on(namespace,pod) (avg_over_time((100 * sum(container_memory_usage_bytes{container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod) / sum(kube_pod_container_resource_requests{resource=\"memory\",container!=\"POD\",namespace=~\"$namespace\"}) by (namespace,pod))[12h:]) > 80)",
@@ -433,8 +433,8 @@
     },
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -517,8 +517,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(kube_pod_container_status_restarts_total{namespace=~\"$namespace\"}[$__rate_interval]) > -1",
@@ -556,8 +556,8 @@
           "value": "$__all"
         },
         "datasource": {
-          "type": "datasource",
-          "uid": "-- Mixed --"
+          "type": "prometheus",
+          "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info, namespace)",
         "includeAll": true,
