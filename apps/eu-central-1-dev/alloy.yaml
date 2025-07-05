@@ -42,18 +42,26 @@ spec:
           configMap:
             create: false
             name: alloy-config
+        
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
+        configReloader:
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
 
         global:
           podSecurityContext:
             runAsNonRoot: true
             runAsUser: 1001
-            runAsGroup: 1001
-            fsGroup: 1001
             seccompProfile:
               type: RuntimeDefault
-            capabilities:
-              drop:
-                - ALL
 
         resources:
           requests:
