@@ -51,6 +51,9 @@ spec:
             fsGroup: 1001
             seccompProfile:
               type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
 
         resources:
           requests:
