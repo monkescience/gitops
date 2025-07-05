@@ -1,0 +1,11 @@
+loki.write "loki" {
+    endpoint {
+    url = "http://loki.loki.svc.cluster.local:3100/loki/api/v1/push"
+
+    // Optional: Add authentication if needed
+    // basic_auth {
+    //   username = "your-username"
+    //   password = "your-password"
+    // }
+    }
+}
