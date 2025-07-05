@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: argocd
   labels:
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -15,7 +15,7 @@ kind: Namespace
 metadata:
   name: kube-system
   labels:
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -27,7 +27,7 @@ kind: Namespace
 metadata:
   name: kube-public
   labels:
-    pod-security.kubernetes.io/enforce: "baseline"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -40,7 +40,7 @@ metadata:
   name: grafana
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -53,7 +53,7 @@ metadata:
   name: prometheus
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -66,7 +66,7 @@ metadata:
   name: istio-system
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -79,7 +79,7 @@ metadata:
   name: keptn-system
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -92,7 +92,7 @@ metadata:
   name: kiali-operator
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -105,7 +105,7 @@ metadata:
   name: loki
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -118,7 +118,7 @@ metadata:
   name: jaeger
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
@@ -131,20 +131,7 @@ metadata:
   name: cert-manager
   labels:
     istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
-    pod-security.kubernetes.io/enforce-version: "latest"
-    pod-security.kubernetes.io/audit: "restricted"
-    pod-security.kubernetes.io/audit-version: "latest"
-    pod-security.kubernetes.io/warn: "restricted"
-    pod-security.kubernetes.io/warn-version: "latest"
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kgateway-system
-  labels:
-    istio.io/dataplane-mode: ambient
-    pod-security.kubernetes.io/enforce: "privileged"
+    pod-security.kubernetes.io/enforce: "restricted"
     pod-security.kubernetes.io/enforce-version: "latest"
     pod-security.kubernetes.io/audit: "restricted"
     pod-security.kubernetes.io/audit-version: "latest"
