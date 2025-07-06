@@ -24,16 +24,16 @@ spec:
             memory: 128Mi
         
         securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
-        
-        containerSecurityContext:
           runAsNonRoot: true
           runAsUser: 1001
           seccompProfile:
             type: RuntimeDefault
+        
+        containerSecurityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
   destination:
     server: https://kubernetes.default.svc
     namespace: jaeger
