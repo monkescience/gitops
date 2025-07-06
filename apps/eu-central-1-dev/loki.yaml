@@ -23,7 +23,6 @@ spec:
             eks.amazonaws.com/role-arn: "arn:aws:iam::387105013966:role/monke-eu-central-1-dev-loki"
         
         loki:
-          # Security context for Loki pods
           podSecurityContext:
             fsGroup: 10001
             runAsGroup: 10001
@@ -38,6 +37,9 @@ spec:
               drop:
                 - ALL
             allowPrivilegeEscalation: false
+          
+          limits_config:
+            volume_enabled: true
           
           storage:
             type: s3
