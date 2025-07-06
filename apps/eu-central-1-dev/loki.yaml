@@ -27,10 +27,11 @@ spec:
             type: s3
             s3:
               region: eu-central-1
-              bucketNames:
-                chunks: monke-eu-central-1-dev-loki-logs
-                ruler: monke-eu-central-1-dev-loki-logs
-                admin: monke-eu-central-1-dev-loki-logs
+            bucketNames:
+              chunks: monke-eu-central-1-dev-loki-logs
+              ruler: monke-eu-central-1-dev-loki-logs
+              admin: monke-eu-central-1-dev-loki-logs
+        
           schemaConfig:
             configs:
               - from: 1970-01-01
@@ -40,12 +41,15 @@ spec:
                 index:
                   prefix: index_
                   period: 24h
+        
           storageConfig:
             tsdb_shipper:
               active_index_directory: /data/tsdb-index
               cache_location: /data/tsdb-cache
+        
           query_scheduler:
             max_outstanding_requests_per_tenant: 32768
+        
           querier:
             max_concurrent: 16
   destination:
