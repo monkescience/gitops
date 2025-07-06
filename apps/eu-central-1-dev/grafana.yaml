@@ -24,6 +24,11 @@ spec:
             memory: 32Mi
           limits:
             memory: 32Mi
+        podSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+          seccompProfile:
+            type: RuntimeDefault
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
