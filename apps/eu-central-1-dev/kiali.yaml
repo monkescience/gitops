@@ -28,6 +28,12 @@ spec:
                 internal_url: http://grafana-service.grafana.svc:3000
               tracing:
                 internal_url: https://jaeger-query.jaeger.svc:16685/jaeger
+        
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
