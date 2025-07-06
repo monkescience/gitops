@@ -30,10 +30,10 @@ spec:
                 internal_url: https://jaeger-query.jaeger.svc:16685/jaeger
         
         securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
+          runAsNonRoot: true
+          runAsUser: 1001
+          seccompProfile:
+            type: RuntimeDefault
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
