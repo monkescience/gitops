@@ -38,9 +38,6 @@ spec:
                 - ALL
             allowPrivilegeEscalation: false
           
-          limits_config:
-            volume_enabled: true
-          
           storage:
             type: s3
             s3:
