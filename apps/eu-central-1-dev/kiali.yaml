@@ -34,6 +34,10 @@ spec:
           runAsUser: 1001
           seccompProfile:
             type: RuntimeDefault
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator
