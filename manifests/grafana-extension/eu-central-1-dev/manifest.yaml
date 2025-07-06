@@ -76,7 +76,7 @@ spec:
     name: loki
     type: loki
     access: proxy
-    url: http://loki.loki.svc.cluster.local:3100
+    url: http://loki-gateway.loki.svc.cluster.local
     isDefault: false
     editable: false
     jsonData:
