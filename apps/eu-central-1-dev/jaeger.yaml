@@ -28,6 +28,12 @@ spec:
           capabilities:
             drop:
               - ALL
+        
+        containerSecurityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+          seccompProfile:
+            type: RuntimeDefault
   destination:
     server: https://kubernetes.default.svc
     namespace: jaeger
