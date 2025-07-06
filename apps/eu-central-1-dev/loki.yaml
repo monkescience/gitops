@@ -52,6 +52,17 @@ spec:
         
           querier:
             max_concurrent: 16
+        
+        sidecar:
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            seccompProfile:
+              type: RuntimeDefault
+
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
