@@ -23,6 +23,14 @@ spec:
             eks.amazonaws.com/role-arn: "arn:aws:iam::387105013966:role/monke-eu-central-1-dev-loki"
         
         loki:
+          podSecurityContext:
+            fsGroup: 10001
+            runAsGroup: 10001
+            runAsNonRoot: true
+            runAsUser: 10001
+            seccompProfile:
+              type: RuntimeDefault
+        
           storage:
             type: s3
             s3:
@@ -52,17 +60,6 @@ spec:
         
           querier:
             max_concurrent: 16
-        
-        sidecar:
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            readOnlyRootFilesystem: true
-            seccompProfile:
-              type: RuntimeDefault
-
   destination:
     server: https://kubernetes.default.svc
     namespace: loki
