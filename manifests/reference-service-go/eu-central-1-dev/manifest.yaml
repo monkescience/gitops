@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-0fe363b
+    app.kubernetes.io/version: 20250711-f27a46f
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -23,7 +23,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-0fe363b
+    app.kubernetes.io/version: 20250711-f27a46f
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -47,7 +47,7 @@ spec:
           value: dev
         - name: REGION
           value: eu-central-1
-        image: ghcr.io/monkescience/reference-service-go:20250622-0fe363b
+        image: ghcr.io/monkescience/reference-service-go:20250711-f27a46f
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -96,7 +96,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-0fe363b
+    app.kubernetes.io/version: 20250711-f27a46f
   name: reference-service-go
   namespace: reference-service-go
 spec:
@@ -111,7 +111,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: reference-service-go
-    app.kubernetes.io/version: 20250622-0fe363b
+    app.kubernetes.io/version: 20250711-f27a46f
   name: reference-service-go
   namespace: reference-service-go
 spec:
