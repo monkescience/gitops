@@ -7,80 +7,21 @@ configs:
     server:
       insecure: true
 
-  redis-ha:
-    enabled: true
+redis-ha:
+  enabled: true
+  image:
+    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/redis
+  redis:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+      limits:
+        memory: 64Mi
+
+  haproxy:
     image:
-      repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/redis
-    redis:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 64Mi
-        limits:
-          memory: 64Mi
-
-    sentinel:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 16Mi
-        limits:
-          memory: 16Mi
-
-    splitBrainDetection:
-      resources:
-        requests:
-          cpu: 50m
-          memory: 16Mi
-        limits:
-          memory: 16Mi
-
-    haproxy:
-      image:
-        repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/haproxy
-      resources:
-        requests:
-          cpu: 50m
-          memory: 128Mi
-        limits:
-          memory: 128Mi
-
-  controller:
-    replicas: 2
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-    resources:
-      requests:
-        cpu: 400m
-        memory: 1024Mi
-      limits:
-        memory: 1024Mi
-
-  repoServer:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-    resources:
-      requests:
-        cpu: 50m
-        memory: 256Mi
-      limits:
-        memory: 256Mi
-
-  server:
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
+      repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/haproxy
     resources:
       requests:
         cpu: 50m
@@ -88,30 +29,73 @@ configs:
       limits:
         memory: 128Mi
 
-  dex:
-    enabled: false
-
-  applicationSet:
-    replicas: 2
-    metrics:
+controller:
+  replicas: 2
+  metrics:
+    enabled: true
+    serviceMonitor:
       enabled: true
-      serviceMonitor:
-        enabled: true
-    resources:
-      requests:
-        cpu: 50m
-        memory: 64Mi
-      limits:
-        memory: 64Mi
+  resources:
+    requests:
+      cpu: 400m
+      memory: 1024Mi
+    limits:
+      memory: 1024Mi
 
-  notifications:
-    metrics:
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+  metrics:
+    enabled: true
+    serviceMonitor:
       enabled: true
-      serviceMonitor:
-        enabled: true
-    resources:
-      requests:
-        cpu: 50m
-        memory: 64Mi
-      limits:
-        memory: 64Mi
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+
+dex:
+  enabled: false
+
+applicationSet:
+  replicas: 2
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
+
+notifications:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
