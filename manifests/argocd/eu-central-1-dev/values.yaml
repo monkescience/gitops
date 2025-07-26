@@ -1,3 +1,7 @@
+global:
+  image:
+    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/quay/argoproj/argocd
+
 configs:
   params:
     server:
