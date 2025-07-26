@@ -1,6 +1,6 @@
 global:
   image:
-    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/argoproj/argocd
+#    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/argoproj/argocd
 
 configs:
   params:
@@ -10,7 +10,7 @@ configs:
 redis-ha:
   enabled: true
   image:
-    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/redis
+#    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/redis
   redis:
     resources:
       requests:
@@ -21,7 +21,7 @@ redis-ha:
 
   haproxy:
     image:
-      repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/haproxy
+#      repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/docker/library/haproxy
     resources:
       requests:
         cpu: 50m
