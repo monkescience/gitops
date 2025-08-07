@@ -9,35 +9,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
-  source:
-    repoURL: https://kiali.org/helm-charts
-    chart: kiali-operator
-    targetRevision: 2.12.0
-    helm:
-      values: |
-        cr:
-          create: true
-          namespace: istio-system
-          spec:
-            auth:
-              strategy: anonymous
-            external_services:
-              prometheus:
-                url: http://prometheus-operated.prometheus.svc:9090
-              grafana:
-                internal_url: http://grafana-service.grafana.svc:3000
-              tracing:
-                internal_url: https://jaeger-query.jaeger.svc:16685/jaeger
-        
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 1001
-          seccompProfile:
-            type: RuntimeDefault
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
+  sources:
+    - repoURL: https://kiali.org/helm-charts
+      chart: kiali-operator
+      targetRevision: 2.12.0
+      helm:
+        valueFiles:
+          - $values/manifests/kiali-operator/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: kiali-operator

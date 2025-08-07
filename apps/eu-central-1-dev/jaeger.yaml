@@ -9,31 +9,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
-  source:
-    repoURL: https://jaegertracing.github.io/helm-charts
-    chart: jaeger-operator
-    targetRevision: 2.57.0
-    helm:
-      values: |
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
-        
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 1001
-          seccompProfile:
-            type: RuntimeDefault
-        
-        containerSecurityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
+  sources:
+    - repoURL: https://jaegertracing.github.io/helm-charts
+      chart: jaeger-operator
+      targetRevision: 2.57.0
+      helm:
+        valueFiles:
+          - $values/manifests/jaeger-operator/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: jaeger

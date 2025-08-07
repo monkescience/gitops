@@ -9,18 +9,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
-  source:
-    repoURL: https://kubernetes-sigs.github.io/metrics-server
-    chart: metrics-server
-    targetRevision: 3.12.2
-    helm:
-      values: |
-        resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
-          limits:
-            memory: 64Mi
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server
+      chart: metrics-server
+      targetRevision: 3.12.2
+      helm:
+        valueFiles:
+          - $values/manifests/metrics-server/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

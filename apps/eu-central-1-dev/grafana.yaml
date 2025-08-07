@@ -9,26 +9,16 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: grafana-operator
-    targetRevision: 5.18.0
-    helm:
-      values: |
-        serviceMonitor:
-          enabled: true
-        namespaceScope: false
-        resources:
-          requests:
-            cpu: 50m
-            memory: 32Mi
-          limits:
-            memory: 32Mi
-        podSecurityContext:
-          runAsNonRoot: true
-          runAsUser: 1001
-          seccompProfile:
-            type: RuntimeDefault
+  sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana-operator
+      targetRevision: 5.18.0
+      helm:
+        valueFiles:
+          - $values/manifests/grafana-operator/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: grafana
