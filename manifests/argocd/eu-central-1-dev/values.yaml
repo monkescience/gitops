@@ -2,11 +2,6 @@
 #  image:
 #    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/quay/argoproj/argocd
 
-configs:
-  params:
-    server:
-      insecure: true
-
 redis-ha:
   enabled: true
 #  image:
@@ -58,6 +53,8 @@ repoServer:
       memory: 256Mi
 
 server:
+  extraArgs:
+    - --insecure
   autoscaling:
     enabled: true
     minReplicas: 2
