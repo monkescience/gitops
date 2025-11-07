@@ -3,29 +3,28 @@
 #    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/quay/argoproj/argocd
 
 redis-ha:
-  enabled: true
+  enabled: false
 #  image:
 #    repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/ecr-public/docker/library/redis
-  redis:
-    resources:
-      requests:
-        cpu: 100m
-        memory: 64Mi
-      limits:
-        memory: 64Mi
-
-  haproxy:
+#  redis:
+#    resources:
+#      requests:
+#        cpu: 100m
+#        memory: 64Mi
+#      limits:
+#        memory: 64Mi
+#  haproxy:
 #    image:
 #      repository: 387105013966.dkr.ecr.eu-central-1.amazonaws.com/ecr-public/docker/library/haproxy
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        memory: 128Mi
+#    resources:
+#      requests:
+#        cpu: 50m
+#        memory: 128Mi
+#      limits:
+#        memory: 128Mi
 
 controller:
-  replicas: 2
+  replicas: 1
   metrics:
     enabled: true
     serviceMonitor:
@@ -40,7 +39,7 @@ controller:
 repoServer:
   autoscaling:
     enabled: true
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     enabled: true
     serviceMonitor:
@@ -53,11 +52,9 @@ repoServer:
       memory: 256Mi
 
 server:
-  extraArgs:
-    - --insecure
   autoscaling:
     enabled: true
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     enabled: true
     serviceMonitor:
@@ -73,7 +70,7 @@ dex:
   enabled: false
 
 applicationSet:
-  replicas: 2
+  replicas: 1
   metrics:
     enabled: true
     serviceMonitor:
