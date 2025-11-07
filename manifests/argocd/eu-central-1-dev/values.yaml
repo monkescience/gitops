@@ -37,9 +37,10 @@ controller:
       memory: 1024Mi
 
 repoServer:
-  autoscaling:
-    enabled: true
-    minReplicas: 1
+  replicas: 1
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 1
   metrics:
     enabled: true
     serviceMonitor:
@@ -52,9 +53,10 @@ repoServer:
       memory: 256Mi
 
 server:
-  autoscaling:
-    enabled: true
-    minReplicas: 1
+  replicas: 1
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 1
   metrics:
     enabled: true
     serviceMonitor:
