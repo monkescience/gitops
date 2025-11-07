@@ -37,20 +37,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
-  source:
-    repoURL: https://istio-release.storage.googleapis.com/charts
-    chart: istiod
-    targetRevision: 1.26.2
-    helm:
-      values: |
-        profile: ambient
-        
-        resources:
-          requests:
-            cpu: 50m
-            memory: 128Mi
-          limits:
-            memory: 128Mi
+  sources:
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: istiod
+      targetRevision: 1.26.2
+      helm:
+        valueFiles:
+          - $values/manifests/istio-istiod/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
@@ -75,20 +71,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
-  source:
-    repoURL: https://istio-release.storage.googleapis.com/charts
-    chart: cni
-    targetRevision: 1.26.2
-    helm:
-      values: |
-        profile: ambient
-        
-        resources:
-          requests:
-            cpu: 20m
-            memory: 64Mi
-          limits:
-            memory: 64Mi
+  sources:
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: cni
+      targetRevision: 1.26.2
+      helm:
+        valueFiles:
+          - $values/manifests/istio-cni/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
@@ -108,18 +100,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
-  source:
-    repoURL: https://istio-release.storage.googleapis.com/charts
-    chart: ztunnel
-    targetRevision: 1.26.2
-    helm:
-      values: |
-        resources:
-          requests:
-            cpu: 50m
-            memory: 32Mi
-          limits:
-            memory: 32Mi
+  sources:
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: ztunnel
+      targetRevision: 1.26.2
+      helm:
+        valueFiles:
+          - $values/manifests/istio-ztunnel/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
