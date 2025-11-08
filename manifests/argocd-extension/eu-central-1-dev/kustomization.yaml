@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   - argo-cd-mixin # https://github.com/adinhodovic/argo-cd-mixin
+  - repository.yaml
 
