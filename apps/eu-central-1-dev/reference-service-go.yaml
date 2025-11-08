@@ -10,8 +10,8 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: oci://ghcr.io
-      chart: monkescience/helm-charts/reference-service-go
+    - repoURL: ghcr.io/monkescience/helm-charts
+      chart: reference-service-go
       targetRevision: 0.5.2
       helm:
         valueFiles:
