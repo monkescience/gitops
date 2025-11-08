@@ -9,14 +9,20 @@ metadata:
     argocd.argoproj.io/sync-wave: "4"
 spec:
   project: default
-  source:
-    repoURL: https://github.com/monkescience/reference-service-go
-    targetRevision: 0.5.0
-    path: deployments/overlays/eu-central-1-dev
+  sources:
+    - repoURL: oci://ghcr.io/monkescience/helm-charts
+      chart: reference-service-go
+      targetRevision: 0.5.2
+      helm:
+        valueFiles:
+          - $values/manifests/reference-service-go/eu-central-1-dev/values.yaml
+    - repoURL: https://github.com/monkescience/gitops.git
+      targetRevision: HEAD
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: reference-service-go
-#  syncPolicy:
-#    automated:
-#      prune: true
-#      selfHeal: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
