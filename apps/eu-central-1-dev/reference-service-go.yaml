@@ -10,13 +10,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/monkescience/gitops.git
-    targetRevision: HEAD
-    path: manifests/reference-service-go/eu-central-1-dev
+    repoURL: https://github.com/monkescience/reference-service-go
+    targetRevision: 0.5.0
+    path: deployments/overlays/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
     namespace: reference-service-go
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
