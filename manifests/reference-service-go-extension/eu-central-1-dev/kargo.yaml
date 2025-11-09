@@ -40,8 +40,7 @@ metadata:
 spec:
   subscriptions:
     - chart:
-        repoURL: oci://ghcr.io/monkescience/helm-charts
-        name: reference-service-go
+        repoURL: oci://ghcr.io/monkescience/helm-charts/reference-service-go
         semverConstraint: '>= 0.0.0'
 #    - git:
 #        repoURL: https://github.com/monkescience/reference-service-go.git
