@@ -36,7 +36,6 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:
   name: reference-service-go
-  namespace: reference-service-go
 spec:
   subscriptions:
     - chart:
