@@ -4,7 +4,8 @@ metadata:
   name: reference-service-go
 spec:
   promotionPolicies:
-    - stage: dev
+    - stageSelector:
+        name: dev
       autoPromotionEnabled: true
 ---
 apiVersion: kargo.akuity.io/v1alpha1
