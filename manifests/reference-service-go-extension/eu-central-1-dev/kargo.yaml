@@ -19,45 +19,36 @@ metadata:
   name: promote-reference-service-go
 spec:
   vars:
-    - name: gitopsRepo
+    - name: gitRepo
       value: https://github.com/monkescience/gitops.git
-    - name: branch
-      value: main
-    - name: workDir
-      value: ./out
-    - name: chartFullRef
+    - name: chart
       value: oci://ghcr.io/monkescience/helm-charts/reference-service-go
   steps:
     - uses: git-clone
-      as: clone
       config:
         repoURL: ${{ vars.gitopsRepo }}
         checkout:
-          - branch: ${{ vars.branch }}
-            path: ${{ vars.workDir }}
-    - uses: yaml-update
-      as: update-chart-version
+          - commit: ${{ commitFrom(vars.gitRepo).ID }}
+            path: ./apps
+          - branch: stage/${{ ctx.stage }}
+            create: true
+            path: ./out
+    - uses: git-clear
       config:
-        path: ${{ vars.workDir }}/apps/eu-central-1-dev/reference-service-go.yaml
+        path: ./out
+    - uses: yaml-update
+      config:
+        path: ./apps/eu-central-1-dev/reference-service-go.yaml
         updates:
           - key: spec.sources[0].targetRevision
-            value: ${{ chartFrom( vars.chartFullRef ).Version }}
+            value: ${{ chartFrom( vars.chart ).Version }}
     - uses: git-commit
-      as: commit
       config:
-        path: ${{ vars.workDir }}
-        message: "chore(kargo): promote reference-service-go chart to ${{ chartFrom( vars.chartFullRef ).Version }} (${{ ctx.stage }})"
+        path: ./out
+        message: "chore(kargo): promote reference-service-go chart to ${{ chartFrom( vars.chart ).Version }} (${{ ctx.stage }})"
     - uses: git-push
-      as: push
       config:
-        path: ${{ vars.workDir }}
-        branch: ${{ vars.branch }}
-    - uses: argocd-update
-      as: refresh-argo-apps
-      config:
-        apps:
-          - name: reference-service-go
-          - name: reference-service-go-extension
+        path: ./out
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
