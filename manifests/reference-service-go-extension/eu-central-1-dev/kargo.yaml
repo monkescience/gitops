@@ -40,8 +40,7 @@ spec:
       config:
         path: ${{ vars.workDir }}/apps/eu-central-1-dev/reference-service-go.yaml
         updates:
-          - documentIndex: 0
-            key: spec.sources[0].targetRevision
+          - key: spec.sources[0].targetRevision
             value: ${{ chartFrom( vars.chartFullRef ).Version }}
     - uses: git-commit
       as: commit
@@ -86,4 +85,3 @@ spec:
     - chart:
         repoURL: oci://ghcr.io/monkescience/helm-charts/reference-service-go
         semverConstraint: '>= 0.0.0-0'
-
