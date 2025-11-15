@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kargo
+  name: jaeger-operator
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   sources:
-    - repoURL: ghcr.io/akuity/kargo-charts
-      chart: kargo
-      targetRevision: 1.8.3
+    - repoURL: https://jaegertracing.github.io/helm-charts
+      chart: jaeger-operator
+      targetRevision: 2.57.0
       helm:
         valueFiles:
-          - $values/manifests/kargo/eu-central-1-dev/values.yaml
+          - $values/manifests/jaeger-operator/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: kargo
+    namespace: jaeger
   syncPolicy:
     automated:
       prune: true

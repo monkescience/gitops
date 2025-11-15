@@ -1,50 +1,52 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: grafana-operator
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   sources:
-    - repoURL: https://charts.jetstack.io
-      chart: cert-manager
-      targetRevision: v1.19.1
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana-operator
+      targetRevision: v5.20.0
       helm:
         valueFiles:
-          - $values/manifests/cert-manager/eu-central-1-dev/values.yaml
+          - $values/manifests/grafana-operator/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: grafana
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-extension
+  name: grafana-extension
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
     repoURL: https://github.com/monkescience/gitops.git
-    targetRevision: HEAD
-    path: manifests/cert-manager-extension/eu-central-1-dev
+    targetRevision: main
+    path: manifests/grafana-extension/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: grafana
   syncPolicy:
     automated:
       prune: true

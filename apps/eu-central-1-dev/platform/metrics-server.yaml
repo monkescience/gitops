@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki
+  name: metrics-server
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   sources:
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: loki
-      targetRevision: 6.46.0
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server
+      chart: metrics-server
+      targetRevision: 3.13.0
       helm:
         valueFiles:
-          - $values/manifests/loki/eu-central-1-dev/values.yaml
+          - $values/manifests/metrics-server/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: loki
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true

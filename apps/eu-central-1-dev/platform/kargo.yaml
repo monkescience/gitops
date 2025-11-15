@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: kargo
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   sources:
-    - repoURL: https://argoproj.github.io/argo-helm
-      chart: argo-cd
-      targetRevision: 9.1.0
+    - repoURL: ghcr.io/akuity/kargo-charts
+      chart: kargo
+      targetRevision: 1.8.3
       helm:
         valueFiles:
-          - $values/manifests/argocd/eu-central-1-dev/values.yaml
+          - $values/manifests/kargo/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: kargo
   syncPolicy:
     automated:
       prune: true
@@ -30,7 +30,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-extension
+  name: kargo-extension
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -40,11 +40,11 @@ spec:
   project: default
   source:
     repoURL: https://github.com/monkescience/gitops.git
-    targetRevision: HEAD
-    path: manifests/argocd-extension/eu-central-1-dev
+    targetRevision: main
+    path: manifests/kargo-extension/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: kargo
   syncPolicy:
     automated:
       prune: true

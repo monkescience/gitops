@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: reference-service-go
+  name: argocd
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   sources:
-    - repoURL: ghcr.io/monkescience/helm-charts
-      chart: reference-service-go
-      targetRevision: 0.6.0
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.1.0
       helm:
         valueFiles:
-          - $values/manifests/reference-service-go/eu-central-1-dev/values.yaml
+          - $values/manifests/argocd/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: reference-service-go
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
@@ -30,19 +30,21 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: reference-service-go-extension
+  name: argocd-extension
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
   source:
     repoURL: https://github.com/monkescience/gitops.git
-    targetRevision: HEAD
-    path: manifests/reference-service-go-extension/eu-central-1-dev
+    targetRevision: main
+    path: manifests/argocd-extension/eu-central-1-dev
   destination:
     server: https://kubernetes.default.svc
-    namespace: reference-service-go
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true

@@ -45,7 +45,7 @@ spec:
         valueFiles:
           - $values/manifests/istio-istiod/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
@@ -79,7 +79,7 @@ spec:
         valueFiles:
           - $values/manifests/istio-cni/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
@@ -108,7 +108,7 @@ spec:
         valueFiles:
           - $values/manifests/istio-ztunnel/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc

@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics-server
+  name: kiali-operator
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   sources:
-    - repoURL: https://kubernetes-sigs.github.io/metrics-server
-      chart: metrics-server
-      targetRevision: 3.13.0
+    - repoURL: https://kiali.org/helm-charts
+      chart: kiali-operator
+      targetRevision: 2.18.0
       helm:
         valueFiles:
-          - $values/manifests/metrics-server/eu-central-1-dev/values.yaml
+          - $values/manifests/kiali-operator/eu-central-1-dev/values.yaml
     - repoURL: https://github.com/monkescience/gitops.git
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: kiali-operator
   syncPolicy:
     automated:
       prune: true
