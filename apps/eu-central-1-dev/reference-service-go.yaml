@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: ghcr.io/monkescience/helm-charts
       chart: reference-service-go
-      targetRevision: 0.5.2
+      targetRevision: 0.6.0
       helm:
         valueFiles:
           - $values/manifests/reference-service-go/eu-central-1-dev/values.yaml
