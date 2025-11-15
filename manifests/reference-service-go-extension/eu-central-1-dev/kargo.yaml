@@ -2,6 +2,11 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Project
 metadata:
   name: reference-service-go
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: ProjectConfig
+metadata:
+  name: reference-service-go
 spec:
   promotionPolicies:
     - stageSelector:
@@ -13,25 +18,46 @@ kind: Stage
 metadata:
   name: dev
 spec:
-  subscriptions:
-    - warehouse: reference-service-go
-  promotionMechanisms:
-    git:
-      - repoURL: https://github.com/monkescience/gitops.git
-        writeBranch: main
-        fileUpdates:
-          - path: apps/eu-central-1-dev/reference-service-go.yaml
-            yaml:
-              - op: replace
-                path: $[0].spec.sources[0].targetRevision
-                valueFrom:
-                  helm:
-                    repoURL: ghcr.io/monkescience/helm-charts
-                    chart: reference-service-go
-                    attribute: Version
-        commitMessageTemplate: |
-          chore(kargo): promote reference-service-go chart to {{ .HelmVersion }} (dev)
-  autoPromotionEnabled: true
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: reference-service-go
+  promotionTemplate:
+    spec:
+      vars:
+        - name: gitopsRepo
+          value: https://github.com/monkescience/gitops.git
+        - name: workDir
+          value: ./repo
+        - name: branch
+          value: main
+      steps:
+        - uses: git-clone
+          as: clone
+          config:
+            repoURL: ${{ vars.gitopsRepo }}
+            checkout:
+              - branch: ${{ vars.branch }}
+                path: ${{ vars.workDir }}
+        - uses: git-set-yaml
+          as: update-chart
+          config:
+            path: ${{ vars.workDir }}
+            file: apps/eu-central-1-dev/reference-service-go.yaml
+            jsonPath: $[0].spec.sources[0].targetRevision
+            value: '{{ .Freight.Charts.Get "oci://ghcr.io/monkescience/helm-charts/reference-service-go" }}'
+        - uses: git-commit
+          as: commit
+          config:
+            path: ${{ vars.workDir }}
+            message: 'chore(kargo): promote reference-service-go chart to {{ .Freight.Charts.Get "oci://ghcr.io/monkescience/helm-charts/reference-service-go" }} (dev)'
+        - uses: git-push
+          config:
+            path: ${{ vars.workDir }}
+            branch: ${{ vars.branch }}
+#  verification:
+#    analysisTemplates:
+#      - name: smoke-test
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
@@ -41,13 +67,4 @@ spec:
   subscriptions:
     - chart:
         repoURL: oci://ghcr.io/monkescience/helm-charts/reference-service-go
-        semverConstraint: '>= 0.0.0'
-#    - git:
-#        repoURL: https://github.com/monkescience/reference-service-go.git
-#        commitSelectionStrategy: SemVer
-#        semverConstraint: '>= 0.0.0'
-#    - image:
-#        repoURL: ghcr.io/monkescience/reference-service-go
-#        imageSelectionStrategy: SemVer
-#        semverConstraint: '>= 0.0.0'
-#        platform: linux/arm64
+        semverConstraint: '>= 0.0.0-0'
