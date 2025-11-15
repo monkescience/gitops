@@ -28,8 +28,6 @@ spec:
       config:
         repoURL: ${{ vars.gitRepo }}
         checkout:
-          - commit: ${{ commitFrom(vars.gitRepo).ID }}
-            path: ./apps
           - branch: stage/${{ ctx.stage }}
             create: true
             path: ./out
