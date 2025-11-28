@@ -3,31 +3,31 @@
 
 // Import Loki and Prometheus writers
 import.file "loki_writer" {
-  filename = "loki-writer.alloy"
+  filename = "/etc/alloy/loki-writer.alloy"
 }
 
 import.file "prometheus_writer" {
-  filename = "prometheus-writer.alloy"
+  filename = "/etc/alloy/prometheus-writer.alloy"
 }
 
 // Import logging configurations
 import.file "node_logs" {
-  filename = "node-logs.alloy"
+  filename = "/etc/alloy/node-logs.alloy"
 }
 
 import.file "pod_logs_discovery" {
-  filename = "pod-logs-discovery.alloy"
+  filename = "/etc/alloy/pod-logs-discovery.alloy"
 }
 
 import.file "pod_logs" {
-  filename = "pod-logs.alloy"
+  filename = "/etc/alloy/pod-logs.alloy"
 }
 
 import.file "cluster_events" {
-  filename = "cluster-events.alloy"
+  filename = "/etc/alloy/cluster-events.alloy"
 }
 
 // Import metrics configurations
 import.file "grafana_operator_metrics" {
-  filename = "grafana-operator-metrics.alloy"
+  filename = "/etc/alloy/grafana-operator-metrics.alloy"
 }
