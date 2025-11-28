@@ -154,7 +154,7 @@ loki.source.kubernetes_events "cluster_events" {
   log_format = "logfmt"
 
   forward_to = [
-    loki.process.cluster_events.receiver
+    loki.process.cluster_events.receiver,
   ]
 }
 
@@ -169,7 +169,7 @@ loki.process "cluster_events" {
 
   stage.labels {
     values = {
-      kubernetes_cluster_events = "job"
+      kubernetes_cluster_events = "job",
     }
   }
 }
