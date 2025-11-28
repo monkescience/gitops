@@ -36,10 +36,10 @@ prometheus.remote_write "default" {
 
 local.file_match "node_logs" {
   path_targets = [{
-    __path__  = "/var/log/syslog"
-    job       = "node/syslog"
-    node_name = sys.env("HOSTNAME")
-    cluster   = monke-eu-central-1-dev
+    __path__  = "/var/log/syslog",
+    job       = "node/syslog",
+    node_name = sys.env("HOSTNAME"),
+    cluster   = "monke-eu-central-1-dev",
   }]
 }
 
