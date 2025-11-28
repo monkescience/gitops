@@ -1,0 +1,76 @@
+// Kubernetes Pod Log Discovery & Relabeling
+// Discovers pods on the current node and sets up relabeling rules
+
+discovery.kubernetes "pod" {
+  role = "pod"
+
+  selectors {
+    role  = "pod"
+    field = "spec.nodeName=" + coalesce(sys.env("HOSTNAME"), constants.hostname)
+  }
+}
+
+discovery.relabel "pod_logs" {
+  targets = discovery.kubernetes.pod.targets
+
+  # namespace label
+  rule {
+    source_labels = ["__meta_kubernetes_namespace"]
+    action        = "replace"
+    target_label  = "namespace"
+  }
+
+  # pod name label
+  rule {
+    source_labels = ["__meta_kubernetes_pod_name"]
+    action        = "replace"
+    target_label  = "pod"
+  }
+
+  # container name label
+  rule {
+    source_labels = ["__meta_kubernetes_pod_container_name"]
+    action        = "replace"
+    target_label  = "container"
+  }
+
+  # app label
+  rule {
+    source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+    action        = "replace"
+    target_label  = "app"
+  }
+
+  # job = namespace/container
+  rule {
+    source_labels = [
+      "__meta_kubernetes_namespace",
+      "__meta_kubernetes_pod_container_name"
+    ]
+    action       = "replace"
+    target_label = "job"
+    separator    = "/"
+    replacement  = "$1"
+  }
+
+  # log file path
+  rule {
+    source_labels = [
+      "__meta_kubernetes_pod_uid",
+      "__meta_kubernetes_pod_container_name"
+    ]
+    action       = "replace"
+    target_label = "__path__"
+    separator    = "/"
+    replacement  = "/var/log/pods/*$1/*.log"
+  }
+
+  # container_runtime
+  rule {
+    source_labels = ["__meta_kubernetes_pod_container_id"]
+    action        = "replace"
+    target_label  = "container_runtime"
+    regex         = "^(\\S+):\\/\\/.+$"
+    replacement   = "$1"
+  }
+}

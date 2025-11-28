@@ -1,0 +1,64 @@
+// Grafana Operator Metrics Scraping
+// Discovers and scrapes metrics from the Grafana Operator
+
+discovery.kubernetes "grafana_operator" {
+  role = "service"
+
+  namespaces {
+    names = ["grafana"]
+  }
+
+  selectors {
+    role  = "service"
+    label = "app.kubernetes.io/name=grafana-operator"
+  }
+}
+
+discovery.relabel "grafana_operator" {
+  targets = discovery.kubernetes.grafana_operator.targets
+
+  # Keep only the metrics port
+  rule {
+    source_labels = ["__meta_kubernetes_service_port_name"]
+    regex         = "metrics"
+    action        = "keep"
+  }
+
+  # Set the metrics path
+  rule {
+    target_label = "__metrics_path__"
+    replacement  = "/metrics"
+  }
+
+  # Add service name label
+  rule {
+    source_labels = ["__meta_kubernetes_service_name"]
+    target_label  = "service"
+  }
+
+  # Add namespace label
+  rule {
+    source_labels = ["__meta_kubernetes_namespace"]
+    target_label  = "namespace"
+  }
+
+  # Add job label
+  rule {
+    target_label = "job"
+    replacement  = "grafana-operator"
+  }
+
+  # Add cluster label
+  rule {
+    target_label = "cluster"
+    replacement  = "monke-eu-central-1-dev"
+  }
+}
+
+prometheus.scrape "grafana_operator" {
+  targets    = discovery.relabel.grafana_operator.output
+  forward_to = [prometheus.remote_write.default.receiver]
+
+  scrape_interval = "30s"
+  scrape_timeout  = "10s"
+}
