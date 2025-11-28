@@ -8,10 +8,3 @@ configMapGenerator:
   - name: alloy-config
     files:
       - config.alloy
-      - loki-writer.alloy
-      - prometheus-writer.alloy
-      - node-logs.alloy
-      - pod-logs-discovery.alloy
-      - pod-logs.alloy
-      - cluster-events.alloy
-      - grafana-operator-metrics.alloy
