@@ -1,0 +1,33 @@
+// Main Alloy Configuration
+// This file imports all modular configuration files
+
+// Import Loki and Prometheus writers
+import.file "loki_writer" {
+  filename = "loki-writer.alloy"
+}
+
+import.file "prometheus_writer" {
+  filename = "prometheus-writer.alloy"
+}
+
+// Import logging configurations
+import.file "node_logs" {
+  filename = "node-logs.alloy"
+}
+
+import.file "pod_logs_discovery" {
+  filename = "pod-logs-discovery.alloy"
+}
+
+import.file "pod_logs" {
+  filename = "pod-logs.alloy"
+}
+
+import.file "cluster_events" {
+  filename = "cluster-events.alloy"
+}
+
+// Import metrics configurations
+import.file "grafana_operator_metrics" {
+  filename = "grafana-operator-metrics.alloy"
+}
