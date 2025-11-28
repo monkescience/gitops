@@ -1,0 +1,117 @@
+# Mimir Distributed Configuration
+# Small-scale deployment with minimal resources for initial setup
+
+# Disable ingress globally
+ingress:
+  enabled: false
+
+mimir:
+  structuredConfig:
+    multitenancy_enabled: false
+
+    blocks_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/blocks
+
+    compactor:
+      data_dir: /data/compactor
+
+    ruler_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/ruler
+
+    alertmanager_storage:
+      backend: filesystem
+      filesystem:
+        dir: /data/alertmanager
+
+# Use minimal replicas for small deployment
+ingester:
+  replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 512Mi
+  persistentVolume:
+    enabled: true
+    size: 10Gi
+    storageClass: gp3
+
+querier:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+
+query_frontend:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+
+distributor:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+
+compactor:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+  persistentVolume:
+    enabled: true
+    size: 10Gi
+    storageClass: gp3
+
+store_gateway:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+  persistentVolume:
+    enabled: true
+    size: 10Gi
+    storageClass: gp3
+
+ruler:
+  enabled: false
+
+alertmanager:
+  enabled: false
+
+# Disable features not needed initially
+minio:
+  enabled: false
+
+nginx:
+  enabled: true
+  replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
+  ingress:
+    enabled: false
