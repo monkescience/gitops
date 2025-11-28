@@ -23,9 +23,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: prometheus
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+#    automated:
+#      prune: true
+#      selfHeal: true
     syncOptions:
       - ServerSideApply=true
       - ApplyOutOfSyncOnly=true
@@ -48,7 +48,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: prometheus
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
