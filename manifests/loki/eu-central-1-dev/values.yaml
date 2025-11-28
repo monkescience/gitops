@@ -6,6 +6,8 @@ serviceAccount:
     eks.amazonaws.com/role-arn: "arn:aws:iam::387105013966:role/monke-eu-central-1-dev-loki"
 
 loki:
+  auth_enabled: false
+
   podSecurityContext:
     fsGroup: 10001
     runAsGroup: 10001
