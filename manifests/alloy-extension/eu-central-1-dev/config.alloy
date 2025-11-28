@@ -31,20 +31,19 @@ prometheus.remote_write "default" {
 }
 
 //*****************************************************
-//* LOGS - Node Logs (local file scraping)
+//* LOGS - Node Logs
 //*****************************************************
 
-local.file_match "node_logs" {
-  path_targets = [{
-    __path__  = "/var/log/syslog",
-    job       = "node/syslog",
-    node_name = sys.env("HOSTNAME"),
-    cluster   = "monke-eu-central-1-dev",
-  }]
-}
+loki.source.journal "node_logs" {
+  max_age = "12h"
+  path    = "/var/log/journal"
 
-loki.source.file "node_logs" {
-  targets    = local.file_match.node_logs.targets
+  labels  = {
+    job     = "node/syslog",
+    cluster = "monke-eu-central-1-dev",
+    node    = sys.env("HOSTNAME"),
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 

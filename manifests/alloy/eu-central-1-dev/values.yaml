@@ -1,4 +1,7 @@
 alloy:
+  mounts:
+    varlog: true
+
   configMap:
     create: false
     name: alloy-config
