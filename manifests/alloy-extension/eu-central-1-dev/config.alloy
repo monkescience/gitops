@@ -96,7 +96,7 @@ discovery.relabel "pod_logs" {
   rule {
     source_labels = [
       "__meta_kubernetes_namespace",
-      "__meta_kubernetes_pod_container_name"
+      "__meta_kubernetes_pod_container_name",
     ]
     action       = "replace"
     target_label = "job"
@@ -108,7 +108,7 @@ discovery.relabel "pod_logs" {
   rule {
     source_labels = [
       "__meta_kubernetes_pod_uid",
-      "__meta_kubernetes_pod_container_name"
+      "__meta_kubernetes_pod_container_name",
     ]
     action       = "replace"
     target_label = "__path__"
