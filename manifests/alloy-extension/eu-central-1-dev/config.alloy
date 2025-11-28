@@ -17,18 +17,18 @@ loki.write "default" {
 
 // Prometheus Remote Write Configuration
 // Writes metrics to Mimir
-//prometheus.remote_write "default" {
-//  endpoint {
-//    url = "http://mimir-nginx.mimir.svc.cluster.local:80/api/v1/push"
-//    name = "mimir"
-//
-//    queue_config {
-//      capacity             = 10000
-//      max_shards           = 10
-//      max_samples_per_send = 5000
-//    }
-//  }
-//}
+prometheus.remote_write "default" {
+  endpoint {
+    url = "http://mimir-nginx.mimir.svc.cluster.local:80/api/v1/push"
+    name = "mimir"
+
+    queue_config {
+      capacity             = 10000
+      max_shards           = 10
+      max_samples_per_send = 5000
+    }
+  }
+}
 
 //*****************************************************
 //* LOGS - Node Logs
