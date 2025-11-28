@@ -24,8 +24,8 @@ configReloader:
 
 global:
   podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 1001
+    runAsNonRoot: false
+#    runAsUser: 1001
     seccompProfile:
       type: RuntimeDefault
 
