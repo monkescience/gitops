@@ -19,7 +19,7 @@ loki.write "default" {
 // Writes metrics to Mimir
 prometheus.remote_write "default" {
   endpoint {
-    url = "http://mimir-nginx.mimir.svc.cluster.local:80/api/v1/push"
+    url = "http://mimir-gateway.mimir.svc.cluster.local:80/api/v1/push"
     name = "mimir"
 
     queue_config {
