@@ -64,35 +64,35 @@ discovery.kubernetes "pod" {
 discovery.relabel "pod_logs" {
   targets = discovery.kubernetes.pod.targets
 
-  # namespace label
+  // namespace label
   rule {
     source_labels = ["__meta_kubernetes_namespace"]
     action        = "replace"
     target_label  = "namespace"
   }
 
-  # pod name label
+  // pod name label
   rule {
     source_labels = ["__meta_kubernetes_pod_name"]
     action        = "replace"
     target_label  = "pod"
   }
 
-  # container name label
+  // container name label
   rule {
     source_labels = ["__meta_kubernetes_pod_container_name"]
     action        = "replace"
     target_label  = "container"
   }
 
-  # app label
+  // app label
   rule {
     source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
     action        = "replace"
     target_label  = "app"
   }
 
-  # job = namespace/container
+  // job = namespace/container
   rule {
     source_labels = [
       "__meta_kubernetes_namespace",
@@ -104,7 +104,7 @@ discovery.relabel "pod_logs" {
     replacement  = "$1"
   }
 
-  # log file path
+  // log file path
   rule {
     source_labels = [
       "__meta_kubernetes_pod_uid",
@@ -116,7 +116,7 @@ discovery.relabel "pod_logs" {
     replacement  = "/var/log/pods/*$1/*.log"
   }
 
-  # container_runtime
+  // container_runtime
   rule {
     source_labels = ["__meta_kubernetes_pod_container_id"]
     action        = "replace"
@@ -194,38 +194,38 @@ discovery.kubernetes "grafana_operator" {
 discovery.relabel "grafana_operator" {
   targets = discovery.kubernetes.grafana_operator.targets
 
-  # Keep only the metrics port
+  // Keep only the metrics port
   rule {
     source_labels = ["__meta_kubernetes_service_port_name"]
     regex         = "metrics"
     action        = "keep"
   }
 
-  # Set the metrics path
+  // Set the metrics path
   rule {
     target_label = "__metrics_path__"
     replacement  = "/metrics"
   }
 
-  # Add service name label
+  // Add service name label
   rule {
     source_labels = ["__meta_kubernetes_service_name"]
     target_label  = "service"
   }
 
-  # Add namespace label
+  // Add namespace label
   rule {
     source_labels = ["__meta_kubernetes_namespace"]
     target_label  = "namespace"
   }
 
-  # Add job label
+  // Add job label
   rule {
     target_label = "job"
     replacement  = "grafana-operator"
   }
 
-  # Add cluster label
+  // Add cluster label
   rule {
     target_label = "cluster"
     replacement  = "monke-eu-central-1-dev"
