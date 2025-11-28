@@ -11,7 +11,7 @@
 // This component defines the Loki write endpoint used by all log sources
 loki.write "default" {
   endpoint {
-    url = "http://loki-gateway.loki.svc.cluster.local:3100/loki/api/v1/push"
+    url = "http://loki-gateway.loki.svc.cluster.local:80/loki/api/v1/push"
   }
 }
 
