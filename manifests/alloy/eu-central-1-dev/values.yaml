@@ -6,7 +6,7 @@ alloy:
     create: false
     name: alloy-config
   securityContext:
-    allowPrivilegeEscalation: false
+    allowPrivilegeEscalation: true
     capabilities:
       drop:
         - ALL
