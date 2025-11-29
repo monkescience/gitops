@@ -52,5 +52,5 @@ alloy-singleton:
   enabled: true
   extraConfig: |-
     mimir.rules.kubernetes "default" {
-      address = "http://mimir-gateway.mimir.svc.cluster.local:80"
+      address = "http://mimir-ruler.mimir.svc.cluster.local:8080"
     }
