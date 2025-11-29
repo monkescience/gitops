@@ -12,7 +12,7 @@ destinations:
 
   - name: loki
     type: loki
-    url: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
+    url: http://loki-gateway.loki.svc.cluster.local:80/loki/api/v1/push
 
 clusterMetrics:
   enabled: true
@@ -50,3 +50,8 @@ alloy-logs:
 
 alloy-singleton:
   enabled: true
+  extraConfig: |-
+    mimir.rules.kubernetes "default" {
+      address = "http://mimir-ruler.mimir.svc.cluster.local:80"
+      tenant_id = "anonymous"
+    }
