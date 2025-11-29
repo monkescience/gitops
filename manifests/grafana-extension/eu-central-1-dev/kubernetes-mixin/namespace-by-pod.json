@@ -591,7 +591,7 @@
             "hide": 2,
             "label": "cluster",
             "name": "cluster",
-            "query": "label_values(up{job=\"cadvisor\"}, cluster)",
+            "query": "label_values(up{job=\"integrations/kubernetes/cadvisor\"}, cluster)",
             "refresh": 2,
             "sort": 1,
             "type": "query"
