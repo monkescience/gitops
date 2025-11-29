@@ -43,7 +43,7 @@
                      }
                   ]
                },
-               "unit": "Bps"
+               "unit": "bps"
             }
          },
          "gridPos": {
@@ -54,7 +54,7 @@
          },
          "id": 1,
          "interval": "1m",
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -97,7 +97,7 @@
                      }
                   ]
                },
-               "unit": "Bps"
+               "unit": "bps"
             }
          },
          "gridPos": {
@@ -108,7 +108,7 @@
          },
          "id": 2,
          "interval": "1m",
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -132,7 +132,7 @@
                "custom": {
                   "showPoints": "never"
                },
-               "unit": "binBps"
+               "unit": "bps"
             }
          },
          "gridPos": {
@@ -154,7 +154,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -178,7 +178,7 @@
                "custom": {
                   "showPoints": "never"
                },
-               "unit": "binBps"
+               "unit": "bps"
             }
          },
          "gridPos": {
@@ -200,7 +200,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -246,7 +246,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -292,7 +292,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -338,7 +338,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -384,7 +384,7 @@
                "mode": "single"
             }
          },
-         "pluginVersion": "v11.4.0",
+         "pluginVersion": "v11.1.0",
          "targets": [
             {
                "datasource": {
@@ -427,7 +427,7 @@
             "hide": 2,
             "label": "cluster",
             "name": "cluster",
-            "query": "label_values(up{job=\"kubelet\"}, cluster)",
+            "query": "label_values(up{job=\"cadvisor\"}, cluster)",
             "refresh": 2,
             "sort": 1,
             "type": "query"
