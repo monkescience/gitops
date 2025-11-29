@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - kubernetes-dashboards.yaml
+  - prometheus_rules.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
