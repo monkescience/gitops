@@ -9,6 +9,15 @@ mimir:
   structuredConfig:
     multitenancy_enabled: false
 
+    blocks_storage:
+      backend: filesystem
+
+    ruler_storage:
+      backend: filesystem
+
+    alertmanager_storage:
+      backend: filesystem
+
 # Use minimal replicas for small deployment
 ingester:
   replicas: 2
