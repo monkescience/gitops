@@ -52,6 +52,19 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: monitoring
+  labels:
+    istio.io/dataplane-mode: ambient
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: latest
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: argocd
   labels:
     pod-security.kubernetes.io/enforce: restricted

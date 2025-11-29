@@ -1,0 +1,72 @@
+cluster:
+  name: monke-eu-central-1-dev
+
+externalServices:
+  prometheus:
+    host: http://mimir-gateway.mimir.svc.cluster.local:80
+    basicAuth:
+      username: ""
+      password: ""
+  loki:
+    host: http://loki-gateway.loki.svc.cluster.local
+    basicAuth:
+      username: ""
+      password: ""
+
+metrics:
+  enabled: true
+  cost:
+    enabled: true
+  node-exporter:
+    enabled: true
+  kubeStateMetrics:
+    enabled: true
+  cadvisor:
+    enabled: true
+  apiserver:
+    enabled: true
+  kubelet:
+    enabled: true
+  kubeControllerManager:
+    enabled: false
+  kubeProxy:
+    enabled: false
+  kubeScheduler:
+    enabled: false
+
+logs:
+  enabled: true
+  cluster_events:
+    enabled: true
+  pod_logs:
+    enabled: true
+
+alloy:
+  mounts:
+    varlog: true
+
+alloy-metrics:
+  alloy:
+    mounts:
+      varlog: true
+    clustering:
+      enabled: true
+
+alloy-logs:
+  alloy:
+    mounts:
+      varlog: true
+    clustering:
+      enabled: true
+
+opencost:
+  enabled: false
+
+prometheus-node-exporter:
+  enabled: true
+
+prometheus-operator-crds:
+  enabled: true
+
+kube-state-metrics:
+  enabled: true
