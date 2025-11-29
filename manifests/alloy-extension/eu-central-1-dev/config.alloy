@@ -248,8 +248,10 @@ discovery.relabel "node_exporter" {
 }
 
 prometheus.scrape "node_exporter" {
-  targets = discovery.relabel.node_exporter.output
+  targets    = discovery.relabel.node_exporter.output
   forward_to = [prometheus.remote_write.default.receiver]
+
+  job_name = "node-exporter"
 
   scrape_interval = "30s"
   scrape_timeout  = "10s"
